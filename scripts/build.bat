@@ -27,11 +27,12 @@ echo Compiling using GCC (%BUILD_TYPE% mode)...
 
 if "%BUILD_TYPE%"=="monolithic" (
     g++ -std=c++20 -O2 -Wall ^
+        -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
         ..\mahoraga_latest.cpp ^
         -o mahoraga.exe ^
         -march=native -static-libgcc -static-libstdc++ -lwpcap -lws2_32
 ) else (
-    g++ -std=c++20 -O2 -Wall -I..\include ^
+    g++ -std=c++20 -O2 -Wall -I..\include -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
         ..\src\main.cpp ^
         ..\src\ConfigurationManager.cpp ^
         ..\src\PacketCapture.cpp ^
@@ -51,4 +52,3 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
     echo [ERROR] Compilation failed. Ensure Npcap SDK and libwpcap are available.
 )
-
