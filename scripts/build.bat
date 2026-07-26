@@ -3,7 +3,7 @@ echo Building Mahoraga Defense Engine for Windows...
 
 where g++ >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] MinGW GCC compiler (g++) was not found in PATH.
+    echo [ERROR] MinGW GCC compiler g++ was not found in PATH.
     echo Please ensure GCC is installed and added to your environment variables.
     exit /b 1
 )
@@ -25,4 +25,3 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
     echo [ERROR] Compilation failed. Ensure Npcap SDK and libwpcap are available.
 )
-
