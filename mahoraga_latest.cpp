@@ -31,8 +31,8 @@
 
 #include <pcap.h>
 
-struct pcap_t;
-struct pcap_pkthdr;
+// struct pcap_t;
+// struct pcap_pkthdr;
 
 namespace mahoraga
 {
@@ -2225,7 +2225,7 @@ private:
     std::atomic<bool>    running_;
     std::thread          capture_thread_;
     std::string          error_msg_;
-    std::mutex           error_mutex_;
+    mutable std::mutex   error_mutex_;
     PacketCallback       callback_;
     int                  received_count_;
     int                  dropped_count_;
