@@ -31,9 +31,6 @@
 
 #include <pcap.h>
 
-// struct pcap_t;
-// struct pcap_pkthdr;
-
 namespace mahoraga
 {
 
