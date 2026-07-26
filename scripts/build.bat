@@ -8,47 +8,21 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-if not exist "..\src\*.cpp" (
+if not exist "..\src\mahoraga_latest.cpp" (
     cd /d "%~dp0"
 )
 
-echo.
-echo Choose build mode:
-echo 1) Monolithic (single file - mahoraga_latest.cpp)
-echo 2) Modular (multi-file from src/)
-set /p BUILD_MODE="Enter 1 or 2 (default 1): "
-if "%BUILD_MODE%"=="2" (
-    set BUILD_TYPE=modular
-) else (
-    set BUILD_TYPE=monolithic
-)
+echo Compiling mahoraga_latest.cpp (monolithic)...
 
-echo Compiling using GCC (%BUILD_TYPE% mode)...
-
-if "%BUILD_TYPE%"=="monolithic" (
-    g++ -std=c++20 -O2 -Wall ^
-        -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
-        ..\mahoraga_latest.cpp ^
-        -o mahoraga.exe ^
-        -march=native -static-libgcc -static-libstdc++ -lwpcap -lws2_32
-) else (
-    g++ -std=c++20 -O2 -Wall -I..\include -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
-        ..\src\main.cpp ^
-        ..\src\ConfigurationManager.cpp ^
-        ..\src\PacketCapture.cpp ^
-        ..\src\FrameParser.cpp ^
-        ..\src\RogueAPDetector.cpp ^
-        ..\src\DeauthDetector.cpp ^
-        ..\src\TrafficAnalyzer.cpp ^
-        ..\src\AlarmManager.cpp ^
-        ..\src\Logger.cpp ^
-        ..\src\DefenseEngine.cpp ^
-        -o mahoraga.exe ^
-        -march=native -static-libgcc -static-libstdc++ -lwpcap -lws2_32
-)
+g++ -std=c++20 -O2 -Wall ^
+    -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
+    ..\src\mahoraga_latest.cpp ^
+    -o mahoraga.exe ^
+    -march=native -static-libgcc -static-libstdc++ -lwpcap -lws2_32
 
 if %ERRORLEVEL% EQU 0 (
     echo [SUCCESS] Compilation finished: mahoraga.exe
 ) else (
     echo [ERROR] Compilation failed. Ensure Npcap SDK and libwpcap are available.
 )
+
