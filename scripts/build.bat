@@ -15,7 +15,7 @@ if not exist "..\src\mahoraga_latest.cpp" (
 echo Compiling mahoraga_latest.cpp (monolithic)...
 
 g++ -std=c++20 -O2 -Wall ^
-    -I"C:\npcap-sdk\Include" -L"C:\npcap-sdk\Lib\x64" ^
+    -I"C:\npcap-sdk-1.13\Include" -L"C:\npcap-sdk-1.13\Lib\x64" ^
     ..\src\mahoraga_latest.cpp ^
     -o mahoraga.exe ^
     -march=native -static-libgcc -static-libstdc++ -lwpcap -lws2_32
